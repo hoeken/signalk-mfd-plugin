@@ -38,9 +38,6 @@ module.exports = function(app, options) {
     var text = [];
     //app.debug('Starting plugin');
     app.debug('Options: ' + JSON.stringify(options));
-
-    // const port = getExternalPort(app)
-    // const protocol = app.config.settings.ssl ? 'https' : 'http'
     
     //const whitelist = ["signalk-location-info", "hoekens-anchor-alarm"];
     let whitelist = [];
@@ -56,7 +53,9 @@ module.exports = function(app, options) {
     app.debug('Whitelist: ' + JSON.stringify(whitelist));
     app.debug('Blacklist: ' + JSON.stringify(blacklist));
 
-    const port = 80;
+    //load our server info.
+    const port = app.config.getExternalPort();
+    const hostname = app.config.getExternalHostname();
     const protocol = app.config.settings.ssl ? 'https' : 'http';
   
 	  intervalid = setInterval(() => publishToNavico(), 10 * 1000);
