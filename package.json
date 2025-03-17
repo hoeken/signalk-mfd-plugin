@@ -29,11 +29,6 @@
     "url": "https://github.com/htool/signalk-mfd-plugin/issues"
   },
   "homepage": "https://github.com/htool/signalk-mfd-plugin#readme",
-  "signalk": {
-    "appIcon": "./signalk-logo.png",
-    "displayName": "MFD tiles"
-  },
-
   "dependencies": {
     "debug": "^4.3.4"
   }
