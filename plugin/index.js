@@ -37,14 +37,21 @@ module.exports = function(app, options) {
   plugin.start = function(options, restartPlugin) {
     var text = [];
     //app.debug('Starting plugin');
-    //app.debug('Options: %j', JSON.stringify(options));
+    app.debug('Options: ' + JSON.stringify(options));
 
     // const port = getExternalPort(app)
     // const protocol = app.config.settings.ssl ? 'https' : 'http'
     
     //const whitelist = ["signalk-location-info", "hoekens-anchor-alarm"];
-    const whitelist = options.whitelist.split(",").map(item => item.trim());
-    const blacklist = options.blacklist.split(",").map(item => item.trim());
+    let whitelist = [];
+    let blacklist = [];
+    
+    if (typeof options.whitelist === 'string')
+      if (options.whitelist.trim().length > 0)
+        whitelist = options.whitelist.split(",").map(item => item.trim());
+    if (typeof options.blacklist === 'string')
+      if (options.blacklist.trim().length > 0)
+        blacklist = options.blacklist.split(",").map(item => item.trim());
 
     app.debug('Whitelist: ' + JSON.stringify(whitelist));
     app.debug('Blacklist: ' + JSON.stringify(blacklist));
